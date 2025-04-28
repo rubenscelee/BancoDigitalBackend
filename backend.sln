@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SenderRabbitMQ", "SenderRab
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReceiverRabbitMQ", "ReceiverRabbitMQ\ReceiverRabbitMQ.csproj", "{5EFC95EE-9AED-403A-AD5C-1B65D22CD13A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banco Central", "Banco Central\Banco Central.csproj", "{095A974C-F5AC-4DA0-A01F-46AD3FF0B4D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{5EFC95EE-9AED-403A-AD5C-1B65D22CD13A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EFC95EE-9AED-403A-AD5C-1B65D22CD13A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EFC95EE-9AED-403A-AD5C-1B65D22CD13A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{095A974C-F5AC-4DA0-A01F-46AD3FF0B4D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{095A974C-F5AC-4DA0-A01F-46AD3FF0B4D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{095A974C-F5AC-4DA0-A01F-46AD3FF0B4D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{095A974C-F5AC-4DA0-A01F-46AD3FF0B4D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -20,6 +20,9 @@ CREATE TABLE BankAccount (
     CONSTRAINT FK_BankAccount_User FOREIGN KEY (UserId) REFERENCES UserApi(Id)
 );
 
+ALTER TABLE BankAccount
+	ADD Saldo MONEY DEFAULT 0.00
+
 
 CREATE TABLE Pix(
 	Id uniqueIdentifier default (newId()) primary key,
