@@ -24,9 +24,22 @@ namespace DigitalBankApi.Context
 
             builder.Entity<BankAccount>()
                .ToTable("BankAccount");
+               
 
             builder.Entity<Pix>()
                .ToTable("Pix");
+
+            builder.Entity<BankTransferPix>()
+                .HasOne(t => t.BankAccountSender)
+                .WithMany(b => b.SentTransfers)
+                .HasForeignKey(t => t.BankAccountSenderId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<BankTransferPix>()
+                .HasOne(t => t.BankAccountReceiver)
+                .WithMany(b => b.ReceivedTransfers)
+                .HasForeignKey(t => t.BankAccountReceiverId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             //builder.Entity<User>().HasData(new User
             //{
@@ -49,5 +62,8 @@ namespace DigitalBankApi.Context
 
         public DbSet<User> Users { get; set; }
         public DbSet<BankAccount> BankAccounts { get; set; }
+        public DbSet<Pix> Pix { get; set; }
+        public DbSet<BankTransferPix> BankTransferPix { get; set; }
+
     }
 }

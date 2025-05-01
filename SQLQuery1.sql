@@ -24,6 +24,19 @@ ALTER TABLE BankAccount
 	ADD Saldo MONEY DEFAULT 0.00
 
 
+CREATE TABLE BankTransferPix(
+	Id uniqueIdentifier default (newId()) primary key,
+    Title varchar(100) not null,
+    DescriptionText varchar(500) not null,
+	TransferAmount MONEY DEFAULT 0.00,
+	BankAccountSenderId UNIQUEIDENTIFIER UNIQUE NOT NULL,
+	BankAccountReceiverId UNIQUEIDENTIFIER UNIQUE NOT NULL,
+	CreatedOn DateTime not null,
+	ChavePix varchar(500),
+	CONSTRAINT FK_BankAccount_BankTransferPix_Sender FOREIGN KEY (BankAccountSenderId) REFERENCES BankAccount(Id),
+	CONSTRAINT FK_BankAccount_BankTransferPix_Receiver FOREIGN KEY (BankAccountReceiverId) REFERENCES BankAccount(Id)
+);
+
 CREATE TABLE Pix(
 	Id uniqueIdentifier default (newId()) primary key,
     ChavePix varchar(100) not null,
@@ -31,6 +44,7 @@ CREATE TABLE Pix(
 	BankAccountId UNIQUEIDENTIFIER UNIQUE NOT NULL,
 	CONSTRAINT FK_BankAccount_Pix FOREIGN KEY (BankAccountId) REFERENCES BankAccount(Id)
 );
+
 
 select * from UserApi
 select * from dbo.BankAccount

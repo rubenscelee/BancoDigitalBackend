@@ -3,6 +3,7 @@ using DigitalBankApi.Repositories.BankTransferPixRepositories;
 using DigitalBankApi.Repositories.UserRepositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using DigitalBankApi.DTOs;
 
 namespace DigitalBankApi.Routes
 {
@@ -35,7 +36,7 @@ namespace DigitalBankApi.Routes
             })
             .RequireAuthorization("ApiScope");
 
-            app.MapPost("/transferenciaPix", async ([FromBody] BankTransferPix bankTransferPix, [FromServices] IBankTransferPixRepository bankTransferPixRepository, ILogger<Program> logger) => {
+            app.MapPost("/transferenciaPix", async ([FromBody] BankTransferPixDto bankTransferPix, [FromServices] IBankTransferPixRepository bankTransferPixRepository, ILogger<Program> logger) => {
 
                 //var createdUser = await userRepository.CreateUser(user);
 
