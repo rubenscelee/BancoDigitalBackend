@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using DigitalBankApi.Repositories.UserRepositories;
 using DigitalBankApi.Repositories.BanckAccountRepositories;
 using DigitalBankApi.Repositories.BankTransferPixRepositories;
+using DigitalBankApi.Repositories.PixRespositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,10 +19,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IBanckAccountRepository, BanckAccountRepository>();
 builder.Services.AddScoped<IBankTransferPixRepository, BankTransferPixRepository>();
+builder.Services.AddScoped<IPixRepository, PixRepository>();
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
     // 🔹 Enable JWT Authentication in Swagger
@@ -56,10 +57,24 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddAuthentication()
-    .AddJwtBearer(options =>
+    .AddJwtBearer("Bearer", options =>
     {
         options.Authority = "https://localhost:5001";
         options.TokenValidationParameters.ValidateAudience = false;
+
+        options.Events = new JwtBearerEvents
+        {
+            OnAuthenticationFailed = context =>
+            {
+                Console.WriteLine($"Token invalid: {context.Exception.Message}");
+                return Task.CompletedTask;
+            },
+            OnTokenValidated = context =>
+            {
+                Console.WriteLine("Token successfully validated.");
+                return Task.CompletedTask;
+            }
+        };
     });
 
 builder.Services.AddAuthorization( options =>

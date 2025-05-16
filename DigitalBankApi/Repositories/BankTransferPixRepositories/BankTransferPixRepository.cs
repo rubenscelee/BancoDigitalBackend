@@ -18,10 +18,14 @@ namespace DigitalBankApi.Repositories.BankTransferPixRepositories
             _pixRepository = pixRepository;
         }
 
-        public async Task<CreateBankTransferPixResult> MakeTransferPix(BankTransferPixDto bankTransferPix) {
+        public async Task<TransferPixResult> MakeTransferPix(BankTransferPixDto bankTransferPix) {
             Task<Pix> pix = _pixRepository.GetPixByKey(bankTransferPix.PixKey);
 
-            return new CreateBankTransferPixResult();
+            if (pix is null) return new TransferPixResult() { Success = false, Message = "Key Pix not Found" };
+
+
+
+            return new TransferPixResult();
         }
        
 
