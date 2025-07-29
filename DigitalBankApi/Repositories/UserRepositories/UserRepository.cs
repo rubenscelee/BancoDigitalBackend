@@ -16,11 +16,9 @@ namespace DigitalBankApi.Repositories.UserRepositories
             _context = context;
             _banckAccountRepository = banckAccountRepository;
         }
-        public async Task<User> GetUserById(string email)
+        public async Task<User> GetUserByEmail(string email)
         {
-            User user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
-
-            return user;
+            return await _context.Users.FirstOrDefaultAsync(x => x.Email.Equals(email));
         }
 
         public async Task<CreateUserResult> CreateUser(User user)

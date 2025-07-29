@@ -7,5 +7,6 @@ namespace DigitalBankApi.Repositories.BankTransferPixRepositories
     public interface IBankTransferPixRepository
     {
         Task<TransferPixResult> MakeTransferPix(BankTransferPixDto bankTransferPix);
+        Task<IEnumerable<BankTransferPix>> ListTransferPix(string emailUser);
     }
 }

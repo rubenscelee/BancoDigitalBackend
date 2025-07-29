@@ -36,23 +36,17 @@ namespace DigitalBankApi.Routes
             })
             .RequireAuthorization("ApiScope");
 
-            app.MapPost("/transferenciaPix", async ([FromBody] BankTransferPixDto bankTransferPix, 
+            app.MapPost("/transferenciaPix", async ([FromBody] BankTransferPixDto bankTransferPixRequest, 
                 [FromServices] IBankTransferPixRepository bankTransferPixRepository, 
-                ILogger<Program> logger, 
-                HttpContext httpContext) => {
-                    var teste = "";
+                ILogger<Program> logger) => {
 
-                    var user = httpContext.User.Claims;
+                    logger.LogInformation("Iniciando transferência via Pix");
 
-                    var emailClaim = user.FirstOrDefault(claim => claim.Type == ClaimTypes.Email);
-                    //var createdUser = await userRepository.CreateUser(user);
-
-                    //if (createdUser is null || !createdUser.Success)
-                    //    return Results.BadRequest(createdUser?.Message ?? "Erro ao criar um novo usuário.");
+                    await bankTransferPixRepository.MakeTransferPix(bankTransferPixRequest);
 
                     return Results.Ok(/*createdUser*/);
             })
-            /*.RequireAuthorization("ApiScope")*/;
+            .RequireAuthorization("ApiScope");
 
         }
     }

@@ -28,6 +28,9 @@ namespace IdentityServer
             new ApiScope[]
             {
                     new ApiScope(name: "digitalbankapi", displayName: "Api for the Digital Bank project.")
+                    {
+                        UserClaims = { JwtClaimTypes.Email }
+                    }
             };
 
         public static IEnumerable<Client> Clients =>

@@ -24,10 +24,12 @@ namespace DigitalBankApi.Context
 
             builder.Entity<BankAccount>()
                .ToTable("BankAccount");
-               
+
 
             builder.Entity<Pix>()
-               .ToTable("Pix");
+               .ToTable("Pix")
+               .HasOne(b => b.BankAccount)
+               .WithMany(b => b.Pix);
 
             builder.Entity<BankTransferPix>()
                 .HasOne(t => t.BankAccountSender)

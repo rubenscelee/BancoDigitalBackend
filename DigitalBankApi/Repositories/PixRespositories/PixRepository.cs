@@ -17,7 +17,6 @@ namespace DigitalBankApi.Repositories.PixRespositories
         public async Task<Pix> GetPixByKey(string chavePix)
         {
             return await _context.Pix.FirstOrDefaultAsync(p => p.ChavePix.Equals(chavePix));
-
         }
     }
 }

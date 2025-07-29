@@ -97,12 +97,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.MapGroup("/accounts").GroupAccountRoutes();
+app.MapGroup("/").GroupUserRoutes();
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication(); // 🔹 Required for JWT Authentication
 app.UseAuthorization();
-
-Routes.CallRoutes(app);
 
 app.Run();
 
